@@ -1,0 +1,12 @@
+Name:        tt1
+Namespace:   ns
+
+Params
+
+ NAME   DESCRIPTION           DEFAULT VALUE
+ key    test with one param   value
+
+ResourceTemplates
+
+ NAME   GENERATENAME   KIND          APIVERSION
+ ---    ex2            PipelineRun   tekton.dev/v1beta1

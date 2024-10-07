@@ -1,0 +1,24 @@
+Name:          task-1
+Namespace:     ns
+Description:   a test description
+Version:       0.1
+
+Params
+
+ NAME      TYPE     DESCRIPTION   DEFAULT VALUE
+ myarg     string                 ---
+ myarray   array                  ---
+ print     string                 somethingdifferent
+ output    array                  [booms booms booms]
+
+Steps
+
+ hello
+ exit
+
+Taskruns
+
+NAME   STARTED          DURATION   STATUS
+tr-2   10 minutes ago   7m0s       Succeeded
+tr-1   20 minutes ago   5m0s       Failed
+

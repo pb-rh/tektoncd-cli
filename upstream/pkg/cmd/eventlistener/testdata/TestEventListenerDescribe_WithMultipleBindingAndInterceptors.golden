@@ -1,0 +1,66 @@
+Name:           el1
+Namespace:      ns
+Service Type:   ClusterIP
+
+EventListenerTriggers
+
+ NAME
+ foo-trig
+
+ BINDINGS
+
+  REF   KIND                    APIVERSION
+  tb1   TriggerBinding          
+  tb2   ClusterTriggerBinding   v1beta1
+
+ TEMPLATE REF   APIVERSION
+ tt1            v1beta1
+ 
+ INTERCEPTORS
+- params:
+  - name: filter
+    value: body.value == 'test'
+  - name: overlays
+    value:
+    - expression: '''testing'''
+      key: value
+  ref:
+    kind: ClusterInterceptor
+    name: cel
+
+EventListenerTriggers
+
+ NAME
+ foo-trig
+
+ BINDINGS
+
+  REF   KIND                    APIVERSION
+  tb4   TriggerBinding          
+  tb5   ClusterTriggerBinding   v1beta1
+
+ TEMPLATE REF   APIVERSION
+ tt2            v1beta1
+ 
+ SERVICE ACCOUNT NAME
+ sa1
+ 
+ INTERCEPTORS
+- ref: {}
+  webhook:
+    objectRef:
+      apiVersion: v1
+      kind: Service
+      name: webhookTest
+      namespace: namespace
+- params:
+  - name: filter
+    value: body.value == 'test'
+  - name: overlays
+    value:
+    - expression: '''testing'''
+      key: value
+  ref:
+    kind: ClusterInterceptor
+    name: cel
+

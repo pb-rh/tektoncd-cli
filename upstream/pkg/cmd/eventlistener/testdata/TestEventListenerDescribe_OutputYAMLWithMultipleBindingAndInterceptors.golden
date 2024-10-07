@@ -1,0 +1,66 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: EventListener
+metadata:
+  creationTimestamp: null
+  name: el1
+  namespace: ns
+spec:
+  namespaceSelector: {}
+  resources: {}
+  triggers:
+  - bindings:
+    - kind: TriggerBinding
+      ref: tb1
+    - apiversion: v1beta1
+      kind: ClusterTriggerBinding
+      ref: tb2
+    - apiversion: v1beta1
+      kind: TriggerBinding
+      ref: tb3
+    interceptors:
+    - params:
+      - name: filter
+        value: body.value == 'test'
+      - name: overlays
+        value:
+        - expression: '''testing'''
+          key: value
+      ref:
+        kind: ClusterInterceptor
+        name: cel
+    name: foo-trig
+    template:
+      apiversion: v1beta1
+      ref: tt1
+  - bindings:
+    - kind: TriggerBinding
+      ref: tb4
+    - apiversion: v1beta1
+      kind: ClusterTriggerBinding
+      ref: tb5
+    interceptors:
+    - ref: {}
+      webhook:
+        objectRef:
+          apiVersion: v1
+          kind: Service
+          name: webhookTest
+          namespace: namespace
+    - params:
+      - name: filter
+        value: body.value == 'test'
+      - name: overlays
+        value:
+        - expression: '''testing'''
+          key: value
+      ref:
+        kind: ClusterInterceptor
+        name: cel
+    name: foo-trig
+    serviceAccountName: sa1
+    template:
+      apiversion: v1beta1
+      ref: tt2
+status:
+  configuration:
+    generatedName: ""

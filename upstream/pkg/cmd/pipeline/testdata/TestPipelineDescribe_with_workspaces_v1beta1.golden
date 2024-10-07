@@ -1,0 +1,20 @@
+Name:        pipeline
+Namespace:   ns
+
+Results
+
+ NAME       DESCRIPTION
+ result-1   This is a descripti...
+ result-2   This is a descripti...
+ result-3   
+
+Workspaces
+
+ NAME   DESCRIPTION      OPTIONAL
+ test   test workspace   false
+
+Tasks
+
+ NAME     TASKREF   RUNAFTER   TIMEOUT   PARAMS
+ task-1   task-1               ---       ---
+ task-2   task-2               ---       ---

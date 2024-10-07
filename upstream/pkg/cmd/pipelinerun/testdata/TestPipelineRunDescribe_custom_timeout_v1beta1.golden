@@ -1,0 +1,11 @@
+Name:           pr-custom-timeout
+Namespace:      ns
+Pipeline Ref:   pr-custom-timeout
+
+Status
+
+STARTED   DURATION   STATUS
+---       ---        ---
+
+Timeouts
+ Pipeline:   1m0s

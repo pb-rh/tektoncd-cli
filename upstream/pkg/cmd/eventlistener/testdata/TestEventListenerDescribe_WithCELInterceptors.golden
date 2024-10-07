@@ -1,0 +1,30 @@
+Name:        el1
+Namespace:   ns
+
+EventListenerTriggers
+
+ NAME
+ foo-trig
+
+ BINDINGS
+
+  REF   KIND                    APIVERSION
+  tb1   TriggerBinding          
+  tb2   ClusterTriggerBinding   v1beta1
+  tb3   TriggerBinding          v1beta1
+
+ TEMPLATE REF   APIVERSION
+ tt1            v1beta1
+ 
+ INTERCEPTORS
+- params:
+  - name: filter
+    value: body.value == 'test'
+  - name: overlays
+    value:
+    - expression: '''testing'''
+      key: value
+  ref:
+    kind: ClusterInterceptor
+    name: cel
+

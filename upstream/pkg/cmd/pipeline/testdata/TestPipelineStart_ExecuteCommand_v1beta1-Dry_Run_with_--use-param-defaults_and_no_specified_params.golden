@@ -1,0 +1,13 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  creationTimestamp: null
+  generateName: test-pipeline-run-
+  labels:
+    jemange: desfrites
+  namespace: ns
+spec:
+  pipelineRef:
+    name: test-pipeline
+  serviceAccountName: svc1
+status: {}

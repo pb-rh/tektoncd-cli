@@ -1,0 +1,25 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: rpmbuild
+spec:
+  workspaces:
+    - name: source
+      description: Volume containing the source code
+  steps:
+  - name: build-rpm
+    env:
+    - name: GITHUB_TOKEN
+      valueFrom:
+        secretKeyRef:
+          name: bot-token-github
+          key: bot-token
+    - name: COPR_TOKEN
+      valueFrom:
+        secretKeyRef:
+          name: copr-cli-config
+          key: copr
+    image: quay.io/chmouel/rpmbuild
+    workingDir: $(workspaces.source.path)
+    command: ["tekton/rpmbuild/build.sh"]

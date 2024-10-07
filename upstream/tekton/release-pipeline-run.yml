@@ -1,0 +1,22 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: cli-release-pipeline-run-
+spec:
+  pipelineRef:
+    name: cli-release-pipeline
+  workspaces:
+    - name: shared-workspace
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 1Gi
+  params:
+    - name: revision
+      value: v0.2.2
+    - name: url
+      value: https://github.com/tektoncd/cli

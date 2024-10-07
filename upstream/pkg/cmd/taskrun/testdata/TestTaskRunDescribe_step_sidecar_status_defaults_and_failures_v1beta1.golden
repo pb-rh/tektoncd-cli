@@ -1,0 +1,27 @@
+Name:        tr-1
+Namespace:   ns
+Task Ref:    t1
+Timeout:     1h0m0s
+
+Status
+
+STARTED         DURATION    STATUS
+9 minutes ago   ---         Failed
+
+Params
+
+ NAME     VALUE
+ input    param
+ input2   param2
+
+Steps
+
+ NAME    STATUS
+ step1   Error
+ step2   ---
+
+Sidecars
+
+ NAME       STATUS
+ sidecar1   Error
+ sidecar2   ---

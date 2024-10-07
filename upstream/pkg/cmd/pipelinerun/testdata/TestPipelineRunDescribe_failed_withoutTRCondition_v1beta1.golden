@@ -1,0 +1,23 @@
+Name:              pipeline-run
+Namespace:         ns
+Pipeline Ref:      pipeline
+Service Account:   test-sa
+Labels:
+ tekton.dev/pipeline=pipeline
+
+Status
+
+STARTED          DURATION   STATUS
+10 minutes ago   5m0s       Failed(Resource not found)
+
+Message
+
+Resource test-resource not found in the pipelinerun
+
+Timeouts
+ Pipeline:   1h0m0s
+
+Taskruns
+
+ NAME   TASK NAME   STARTED         DURATION   STATUS
+ tr-1   t-1         8 minutes ago   3m0s       ---

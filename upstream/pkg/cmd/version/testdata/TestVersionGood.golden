@@ -1,0 +1,2 @@
+Client version: v1.2.3
+Pipeline version: unknown, pipeline controller may be installed in another namespace please use tkn version -n {namespace}

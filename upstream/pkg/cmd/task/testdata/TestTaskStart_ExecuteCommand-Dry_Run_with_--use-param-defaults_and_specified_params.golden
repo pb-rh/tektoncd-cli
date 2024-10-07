@@ -1,0 +1,15 @@
+apiVersion: tekton.dev/v1
+kind: TaskRun
+metadata:
+  creationTimestamp: null
+  generateName: task-1-run-
+  namespace: ns
+spec:
+  params:
+  - name: myarg
+    value: arg
+  serviceAccountName: svc1
+  taskRef:
+    name: task-1
+status:
+  podName: ""

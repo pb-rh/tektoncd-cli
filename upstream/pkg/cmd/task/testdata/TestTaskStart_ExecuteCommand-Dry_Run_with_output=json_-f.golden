@@ -1,0 +1,59 @@
+{
+	"kind": "TaskRun",
+	"apiVersion": "tekton.dev/v1",
+	"metadata": {
+		"generateName": "task-v1-run-",
+		"namespace": "ns",
+		"creationTimestamp": null
+	},
+	"spec": {
+		"params": [
+			{
+				"name": "foobar",
+				"value": "context"
+			}
+		],
+		"serviceAccountName": "svc1",
+		"taskSpec": {
+			"params": [
+				{
+					"name": "foobar",
+					"type": "string"
+				}
+			],
+			"steps": [
+				{
+					"name": "build-sources",
+					"image": "alpine",
+					"env": [
+						{
+							"name": "PARAM_URL",
+							"value": "$(params.foobar)"
+						}
+					],
+					"computeResources": {},
+					"script": "#!/bin/sh\n\nprintf \"%s\" \"${PARAM_URL}\" \u003e \"$(results.url.path)\"\n"
+				}
+			],
+			"workspaces": [
+				{
+					"name": "temporary"
+				}
+			],
+			"results": [
+				{
+					"name": "url"
+				}
+			]
+		},
+		"workspaces": [
+			{
+				"name": "temporary",
+				"emptyDir": {}
+			}
+		]
+	},
+	"status": {
+		"podName": ""
+	}
+}

@@ -1,0 +1,35 @@
+apiVersion: tekton.dev/v1
+kind: TaskRun
+metadata:
+  creationTimestamp: null
+  generateName: task-v1-run-
+  namespace: ns
+spec:
+  params:
+  - name: foobar
+    value: context
+  serviceAccountName: svc1
+  taskSpec:
+    params:
+    - name: foobar
+      type: string
+    results:
+    - name: url
+    steps:
+    - computeResources: {}
+      env:
+      - name: PARAM_URL
+        value: $(params.foobar)
+      image: alpine
+      name: build-sources
+      script: |
+        #!/bin/sh
+
+        printf "%s" "${PARAM_URL}" > "$(results.url.path)"
+    workspaces:
+    - name: temporary
+  workspaces:
+  - emptyDir: {}
+    name: temporary
+status:
+  podName: ""

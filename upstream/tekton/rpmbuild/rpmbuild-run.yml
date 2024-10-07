@@ -1,0 +1,39 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: rpmbuild-pipelinerun
+spec:
+  workspaces:
+    - name: source
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 1Gi
+  pipelineSpec:
+    workspaces:
+      - name: source
+        description: Workspace where source code will be cloned
+    tasks:
+      - name: fetch-repository
+        taskRef:
+          name: git-clone
+        workspaces:
+          - name: output
+            workspace: source
+        params:
+          - name: url
+            value: https://github.com/tektoncd/cli
+          - name: revision
+            value: main
+          - name: deleteExisting
+            value: "true"
+      - name: rpmbuild
+        taskRef:
+          name: rpmbuild
+        workspaces:
+          - name: source
+            workspace: source
+        runAfter: ["fetch-repository"]

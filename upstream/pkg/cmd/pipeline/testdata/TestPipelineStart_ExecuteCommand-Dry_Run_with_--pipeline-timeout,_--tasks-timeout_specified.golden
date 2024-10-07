@@ -1,0 +1,22 @@
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  creationTimestamp: null
+  generateName: test-pipeline-run-
+  labels:
+    jemange: desfrites
+  namespace: ns
+spec:
+  params:
+  - name: pipeline-param
+    value: value1
+  - name: rev-param
+    value: value2
+  pipelineRef:
+    name: test-pipeline
+  taskRunTemplate:
+    serviceAccountName: svc1
+  timeouts:
+    pipeline: 2s
+    tasks: 1s
+status: {}

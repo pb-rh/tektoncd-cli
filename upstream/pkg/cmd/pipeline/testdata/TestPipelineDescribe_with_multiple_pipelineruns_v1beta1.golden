@@ -1,0 +1,20 @@
+Name:          pipeline
+Namespace:     ns
+Description:   a test description
+
+Params
+
+ NAME             TYPE     DESCRIPTION   DEFAULT VALUE
+ pipeline-param   string                 somethingdifferent
+
+Tasks
+
+ NAME   TASKREF   RUNAFTER   TIMEOUT     PARAMS
+ task   taskref   one, two   5 minutes   task-param: value
+
+PipelineRuns
+
+ NAME             STARTED          DURATION   STATUS
+ pipeline-run-1   15 minutes ago   10m0s      Succeeded
+ pipeline-run-3   25 minutes ago   20m0s      Succeeded
+ pipeline-run-2   30 minutes ago   25m0s      Succeeded
