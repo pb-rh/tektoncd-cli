@@ -4,14 +4,14 @@ kind: Component
 metadata:
   annotations:
     build.appstudio.openshift.io/pipeline: '{"name":"docker-build","bundle":"latest"}'
-  name: tektoncd-chains-main-tkn
+  name: tektoncd-cli-main-tkn
 spec:
   componentName: tkn
-  application: tektoncd-chains-main
+  application: tektoncd-cli-main
   build-nudges-ref:
   - operator-main-bundle
   source:
     git:
-      url: https://github.com/openshift-pipelines/tektoncd-chains
+      url: https://github.com/openshift-pipelines/tektoncd-cli
       dockerfileUrl: openshift/dockerfiles/tkn.Dockerfile
       revision: main

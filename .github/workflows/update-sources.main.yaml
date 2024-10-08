@@ -19,10 +19,10 @@ jobs:
       with:
         ref: main
 
-    - name: Clone tektoncd/chains
+    - name: Clone tektoncd/cli
       run: |
         rm -fR upstream
-        git clone https://github.com/tektoncd/chains upstream
+        git clone https://github.com/tektoncd/cli upstream
         pushd upstream
         git checkout -B main origin/main
         popd
@@ -51,12 +51,12 @@ jobs:
         fi
 
         git commit -F- <<EOF
-        [bot] Update from tektoncd/chains to ${NEW_COMMIT}
+        [bot] Update from tektoncd/cli to ${NEW_COMMIT}
 
             $ git diff --stat ${NEW_COMMIT}..${OLD_COMMIT}
         $(cat /tmp/diff.txt | sed 's/^/    /')
         
-        https://github.com/tektoncd/chains/compare/${NEW_COMMIT}..${OLD_COMMIT}
+        https://github.com/tektoncd/cli/compare/${NEW_COMMIT}..${OLD_COMMIT}
         EOF
         
         git push -f origin actions/update/sources-main
