@@ -2,13 +2,13 @@
 apiVersion: appstudio.redhat.com/v1alpha1
 kind: ImageRepository
 metadata:
-  name: tektoncd-chains-main-serve-tkn
+  name: tektoncd-cli-main-serve-tkn
   annotations:
     image-controller.appstudio.redhat.com/update-component-image: "true"
   labels:
-    appstudio.redhat.com/component: tektoncd-chains-main-serve-tkn
-    appstudio.redhat.com/application: tektoncd-chains-main
+    appstudio.redhat.com/component: tektoncd-cli-main-serve-tkn
+    appstudio.redhat.com/application: tektoncd-cli-main
 spec:
   image:
-   name: tektoncd-chains-main/serve-tkn
+   name: tektoncd-cli-main/serve-tkn
    visibility: public
