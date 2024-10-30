@@ -11,7 +11,7 @@ ARG TKN_VERSION=main
 WORKDIR $REMOTE_SOURCE
 
 COPY upstream .
-COPY patches patches/
+COPY .konflux/patches patches/
 RUN set -e; for f in patches/*.patch; do echo ${f}; [[ -f ${f} ]] || continue; git apply ${f}; done
 
 COPY head HEAD
