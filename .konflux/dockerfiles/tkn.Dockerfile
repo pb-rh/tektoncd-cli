@@ -27,6 +27,7 @@ FROM $RUNTIME
 ARG VERSION=tkn-1.18
 COPY --from=builder /tmp/tkn /usr/bin
 COPY --from=pacbuilder /usr/bin/tkn-pac /usr/bin
+
 LABEL \
       com.redhat.component="openshift-pipelines-cli-tkn-container" \
       name="openshift-pipelines/pipelines-cli-tkn-rhel9" \
@@ -37,6 +38,7 @@ LABEL \
       maintainer="pipelines-extcomm@redhat.com" \
       io.k8s.description="Red Hat OpenShift Pipelines tkn CLI" \
       io.openshift.tags="pipelines,tekton,openshift"
+
 RUN microdnf install -y shadow-utils
 RUN groupadd -r -g 65532 nonroot && useradd --no-log-init -r -u 65532 -g nonroot nonroot
 USER 65532
